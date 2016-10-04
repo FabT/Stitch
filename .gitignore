@@ -1,0 +1,23 @@
+ITEM.Name = 'Stitch'
+ITEM.Price = xxxx
+ITEM.Model = 'models/xxx'
+
+function ITEM:OnEquip(ply, modifications)
+	if not ply._OldModel then
+		ply._OldModel = ply:GetModel()
+		ply:SetModelScale(1.2, 1)
+	end
+	
+	timer.Simple(1, function() ply:SetModel(self.Model) end)
+end
+
+function ITEM:OnHolster(ply)
+	if ply._OldModel then
+		ply:SetModel(ply._OldModel)
+		ply:SetModelScale(1, 1)
+	end
+end
+
+function ITEM:PlayerSetModel(ply)
+	ply:SetModel(self.Model)
+end
